@@ -4,12 +4,16 @@
 var Twit = require('twit');
 
 // Search phrase:
-var searchPhrase = "#react min_retweets:5 OR javascript min_retweets:5 OR #nodejs min_retweets:8 OR #jQuery min_retweets:5 OR #angular min_retweets:5 OR #mongoose min_retweets:5 filter:links"
+var searchPhrase = process.env.TWITTER_SEARCH_PHRASE;
 
 function Bot() {
 
     // Api tokens for twitter:
-    this.twitter = new Twit();
+    this.twitter = new Twit({
+        consumer_key: process.env.CONSUMER_KEY,
+        consumer_secret: process.env.CONSUMER_SECRET,
+        access_token: process.env.ACCESS_TOKEN,
+        access_token_secret: process.env.ACCESS_TOKEN_SECRET});
 
     this.searchPhrase = searchPhrase;
 }
