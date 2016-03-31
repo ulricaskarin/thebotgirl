@@ -4,7 +4,7 @@
 var Twit = require('twit');
 
 // Search phrase:
-var searchPhrase = process.env.TWITTER_SEARCH_PHRASE;
+var searchPhrase = "#react min_retweets:5 OR javascript min_retweets:5 OR #nodejs min_retweets:8 OR #jQuery min_retweets:5 OR #angular min_retweets:5 OR #mongoose min_retweets:5 filter:links"
 
 function Bot() {
 
