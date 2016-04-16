@@ -1,10 +1,11 @@
 "use strict";
+var auth = require("./auth");
 
 // Requires:
 var Twit = require('twit');
 
 // Search phrase:
-var searchPhrase = "#react min_retweets:5 OR javascript min_retweets:5 OR #nodejs min_retweets:8 OR #jQuery min_retweets:5 OR #angular min_retweets:5 OR #mongoose min_retweets:5 filter:links"
+var searchPhrase = "#javascript min_retweets:4 OR #node min_retweets:3 OR #nodejs min_retweets:4 OR #jQuery min_retweets:3 OR #angular min_retweets:3 OR #mongoose min_retweets:2 filter:links";
 
 function Bot() {
 
@@ -23,8 +24,7 @@ Bot.prototype.searchTweets = function() {
     var _this = this;
 
     var query = {
-        q: this.searchPhrase,
-        result_type: "recent"
+        q: this.searchPhrase
     };
 
     this.twitter.get("search/tweets", query, function (err, tweets, response) {
@@ -53,6 +53,15 @@ Bot.prototype.searchTweets = function() {
     });
 };
 
-// Kick off theBotGirl:
-var theBotGirl = new Bot();
-theBotGirl.searchTweets();
+
+setInterval(function() {
+    try {
+
+        // Kick off theBotGirl:
+        var theBotGirl = new Bot();
+        theBotGirl.searchTweets();
+    }
+    catch (e) {
+        console.log(e);
+    }
+}, 80000* 60);
